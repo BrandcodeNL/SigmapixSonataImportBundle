@@ -1,4 +1,5 @@
 services:
     sigmapix.sonata.import.service:
+        public: true
         class: Sigmapix\Sonata\ImportBundle\Service\ImportService
         arguments: ["@doctrine.orm.entity_manager", "@session", "@service_container", "%sigmapix.sonata.import.doctrine_writer.class%"]
