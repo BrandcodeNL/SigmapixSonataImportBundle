@@ -94,7 +94,7 @@ final class ImportService
         $reader->setColumnHeaders($columnHeaders);
 
         /** @var DoctrineWriter $writer */
-        $writer = new $this->doctrineWriterClass($this->em, \get_class($form->getData()));
+        $writer = new $this->doctrineWriterClass($this->em, $admin->getClass());
         if (method_exists($writer, 'setContainer')) {
             $writer->setContainer($this->container);
         }

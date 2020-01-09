@@ -68,7 +68,7 @@ trait ImportableAdminTrait
             $class = array_values($this->getSubClasses())[0];
         }
 
-        $this->formOptions['data_class'] = $class;
+        // $this->formOptions['data_class'] = $class;
 
         $formBuilder = $this->getFormContractor()->getFormBuilder(
             'import_form', $this->formOptions
