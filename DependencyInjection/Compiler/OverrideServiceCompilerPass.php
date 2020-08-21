@@ -9,7 +9,6 @@ class OverrideServiceCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $definition = $container->getDefinition('sonata.admin.exporter');
-        $definition->setClass('Sigmapix\Sonata\ImportBundle\Export\Exporter');
+
     }
 }
