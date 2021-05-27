@@ -80,9 +80,8 @@ trait ImportableAdminTrait
     }
 
     /**
-     * @param FormBuilderInterface $formBuilder
-     * @param array                $headers
-     *                                          todo: use defineFormBuilder for import Action and upload Action
+     * @param array $headers
+     *                       todo: use defineFormBuilder for import Action and upload Action
      */
     public function defineImportFormBuilder(FormBuilderInterface $formBuilder, array $headers)
     {
@@ -129,7 +128,6 @@ trait ImportableAdminTrait
         }
         ini_set('mbstring.substitute_character', $oldValue);
         $formBuilder->add('import', SubmitType::class);
-        $this->attachInlineValidator();
     }
 
     /**
@@ -144,12 +142,11 @@ trait ImportableAdminTrait
         $buttonList['import'] = [
             'template' => 'SigmapixSonataImportBundle:Button:import_button.html.twig',
         ];
+
         return $buttonList;
     }
 
     /**
-     * @param array $headers
-     *
      * @throws \ReflectionException
      *
      * @return Form
@@ -161,9 +158,6 @@ trait ImportableAdminTrait
         return $this->importForm;
     }
 
-    /**
-     * @param StepAggregator $workflow
-     */
     public function configureImportSteps(StepAggregator $workflow)
     {
         $dateTimeFields = [];
@@ -187,9 +181,6 @@ trait ImportableAdminTrait
      * This method can be overloaded in your Admin service.
      * It's called from importAction.
      *
-     * @param Request $request
-     * @param Form    $form
-     *
      * @return Response|null
      */
     public function preImport(Request $request, Form $form)
@@ -200,10 +191,7 @@ trait ImportableAdminTrait
      * This method can be overloaded in your Admin service.
      * It's called from importAction.
      *
-     * @param Request      $request
-     * @param UploadedFile $file
-     * @param Form         $form
-     * @param mixed        $results
+     * @param mixed $results
      *
      * @return Response|null
      */
@@ -211,19 +199,8 @@ trait ImportableAdminTrait
     {
     }
 
-    /**
-     * @param FormMapper $formMapper
-     */
     abstract protected function configureImportFields(FormMapper $formMapper);
 
-    /**
-     * Attach the inline validator to the model metadata, this must be done once per admin.
-     */
-    abstract protected function attachInlineValidator();
-
-    /**
-     * @param RouteCollection $collection
-     */
     protected function configureRoutes(RouteCollection $collection)
     {
         /* @var AbstractAdmin $this */
@@ -234,8 +211,6 @@ trait ImportableAdminTrait
     }
 
     /**
-     * @param array $headers
-     *
      * @throws \ReflectionException
      */
     protected function buildImportForm(array $headers)
@@ -249,8 +224,7 @@ trait ImportableAdminTrait
     /**
      * @param $input
      * @param $words
-     * @param TranslatorInterface $trans
-     * @param string              $domain
+     * @param string $domain
      *
      * @return string
      */
